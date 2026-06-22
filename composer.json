@@ -14,7 +14,7 @@
         "source": "https://github.com/verstka/verstka-sdk-php"
     },
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "ext-hash": "*",
         "ext-json": "*",
         "ext-zip": "*",
@@ -57,6 +57,9 @@
     },
     "config": {
         "sort-packages": true,
+        "platform": {
+            "php": "8.2.0"
+        },
         "allow-plugins": {
             "php-http/discovery": true
         }

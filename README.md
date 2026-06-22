@@ -38,7 +38,7 @@ The SDK does **not** persist business data for you. It handles API communication
 composer require verstka/sdk
 ```
 
-- PHP **8.1+**
+- PHP **8.2+**
 - Extensions: `ext-json`, `ext-hash`, `ext-zip`
 - Guzzle (installed automatically)
 
