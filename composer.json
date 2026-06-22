@@ -1,0 +1,66 @@
+{
+    "name": "verstka/sdk",
+    "description": "PHP SDK for Verstka API v2: open editor sessions, verify callbacks, download and process material content (media + fonts).",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["verstka", "sdk", "editor", "cms", "api"],
+    "authors": [
+        {
+            "name": "Verstka"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/verstka/verstka-sdk-php/issues",
+        "source": "https://github.com/verstka/verstka-sdk-php"
+    },
+    "require": {
+        "php": ">=8.1",
+        "ext-hash": "*",
+        "ext-json": "*",
+        "ext-zip": "*",
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "laravel/framework": "^10.48|^11.0",
+        "orchestra/testbench": "^8.28|^9.0",
+        "phpstan/phpstan": "^1.12",
+        "phpunit/phpunit": "^10.5",
+        "symfony/framework-bundle": "^6.4|^7.0",
+        "symfony/phpunit-bridge": "^6.4|^7.0"
+    },
+    "suggest": {
+        "symfony/framework-bundle": "For Symfony integration",
+        "laravel/framework": "For Laravel integration"
+    },
+    "autoload": {
+        "psr-4": {
+            "Verstka\\Sdk\\": "src/Verstka/Sdk/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Verstka\\Sdk\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Verstka\\Sdk\\Integration\\Laravel\\VerstkaServiceProvider"
+            ]
+        },
+        "symfony": {
+            "bundles": {
+                "Verstka\\Sdk\\Integration\\Symfony\\VerstkaBundle": ["all"]
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

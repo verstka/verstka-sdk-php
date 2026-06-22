@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Verstka\Sdk\Client\VerstkaClient:
+        arguments:
+            $config: '@Verstka\Sdk\Config\VerstkaConfig'
+
+    Verstka\Sdk\Integration\Symfony\Controller\CallbackController:
+        tags: ['controller.service_arguments']
+
+    Verstka\Sdk\Integration\Symfony\EventSubscriber\VerstkaExceptionSubscriber:
+        tags: ['kernel.event_subscriber']

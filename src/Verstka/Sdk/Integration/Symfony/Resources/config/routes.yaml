@@ -1,0 +1,4 @@
+verstka_callback:
+    resource: '../../Controller/'
+    type: attribute
+    prefix: '%verstka.callback_route_prefix%'
