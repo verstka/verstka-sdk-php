@@ -79,8 +79,6 @@ $config = new VerstkaConfig(
     maxContentSize: 100 * 1024 * 1024,
     requestTimeout: 60.0,
     downloadTimeout: 120.0,
-    basicAuthUser: null,
-    basicAuthPassword: null,
     debug: false,
 );
 ```

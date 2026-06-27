@@ -25,8 +25,6 @@ final class VerstkaServiceProvider extends ServiceProvider
                 apiSecret: (string) $config['api_secret'],
                 callbackUrl: (string) $config['callback_url'],
                 apiUrl: (string) ($config['api_url'] ?? VerstkaConfig::DEFAULT_API_URL),
-                basicAuthUser: $config['basic_auth_user'] ?? null,
-                basicAuthPassword: $config['basic_auth_password'] ?? null,
                 maxContentSize: (int) ($config['max_content_size'] ?? VerstkaConfig::DEFAULT_MAX_CONTENT_SIZE),
                 requestTimeout: (float) ($config['request_timeout'] ?? 60.0),
                 downloadTimeout: (float) ($config['download_timeout'] ?? 120.0),

@@ -10,6 +10,7 @@ use Verstka\Sdk\Exception\VerstkaApiError;
 use Verstka\Sdk\Exception\VerstkaMetadataJsonError;
 use Verstka\Sdk\Exception\VerstkaVmsJsonError;
 use Verstka\Sdk\Signature\SignatureService;
+use Verstka\Sdk\VerstkaSdk;
 
 final class SessionBuilder
 {
@@ -30,12 +31,7 @@ final class SessionBuilder
         }
 
         $existingMetadata = self::coerceJson($metadata, VerstkaMetadataJsonError::class) ?? [];
-        $mergedMetadata = array_merge(['version' => '2.0'], $existingMetadata);
-
-        if ($config->basicAuthUser !== null && $config->basicAuthPassword !== null) {
-            $mergedMetadata['webhook_basic_auth_user'] = $config->basicAuthUser;
-            $mergedMetadata['webhook_basic_auth_password'] = $config->basicAuthPassword;
-        }
+        $mergedMetadata = array_merge(['version' => 'php_' . VerstkaSdk::VERSION], $existingMetadata);
 
         $payload = [
             'api_key' => $config->apiKey,

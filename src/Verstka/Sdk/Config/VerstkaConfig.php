@@ -14,8 +14,6 @@ final class VerstkaConfig
         public readonly string $apiSecret,
         public readonly string $callbackUrl,
         public readonly string $apiUrl = self::DEFAULT_API_URL,
-        public readonly ?string $basicAuthUser = null,
-        public readonly ?string $basicAuthPassword = null,
         public readonly int $maxContentSize = self::DEFAULT_MAX_CONTENT_SIZE,
         public readonly float $requestTimeout = 60.0,
         public readonly float $downloadTimeout = 120.0,

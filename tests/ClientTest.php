@@ -15,6 +15,7 @@ use Verstka\Sdk\Exception\VerstkaMetadataJsonError;
 use Verstka\Sdk\Exception\VerstkaVmsJsonError;
 use Verstka\Sdk\Signature\SignatureService;
 use Verstka\Sdk\Tests\Support\TestConfig;
+use Verstka\Sdk\VerstkaSdk;
 
 final class ClientTest extends TestCase
 {
@@ -37,7 +38,7 @@ final class ClientTest extends TestCase
         self::assertSame(TestConfig::CALLBACK_URL, $body['callback_url']);
         self::assertSame('M1', $body['material_id']);
         self::assertSame(7, $body['metadata']['user_id']);
-        self::assertSame('2.0', $body['metadata']['version']);
+        self::assertSame('php_' . VerstkaSdk::VERSION, $body['metadata']['version']);
         self::assertSame(['foo' => 'bar'], $body['vms_json']);
 
         $expectedSig = SignatureService::signMaterial('M1', TestConfig::CALLBACK_URL, TestConfig::API_SECRET);
@@ -86,22 +87,23 @@ final class ClientTest extends TestCase
         }
     }
 
-    public function testBasicAuthMetadata(): void
+    public function testWebhookAuthMetadata(): void
     {
         $config = new \Verstka\Sdk\Config\VerstkaConfig(
             apiKey: TestConfig::API_KEY,
             apiSecret: TestConfig::API_SECRET,
             callbackUrl: TestConfig::CALLBACK_URL,
             apiUrl: 'https://verstka.test/api/v2',
-            basicAuthUser: 'u',
-            basicAuthPassword: 'p',
         );
         $mock = new MockHandler([new Response(200, [], json_encode(['url' => 'ok'], JSON_THROW_ON_ERROR))]);
         $client = new VerstkaClient($config, new Client(['handler' => HandlerStack::create($mock)]));
 
-        $client->getEditorUrl('M1');
+        $client->getEditorUrl('M1', metadata: [
+            'webhook_auth_user' => 'u',
+            'webhook_auth_password' => 'p',
+        ]);
         $body = json_decode((string) $mock->getLastRequest()->getBody(), true, 512, JSON_THROW_ON_ERROR);
-        self::assertSame('u', $body['metadata']['webhook_basic_auth_user']);
-        self::assertSame('p', $body['metadata']['webhook_basic_auth_password']);
+        self::assertSame('u', $body['metadata']['webhook_auth_user']);
+        self::assertSame('p', $body['metadata']['webhook_auth_password']);
     }
 }

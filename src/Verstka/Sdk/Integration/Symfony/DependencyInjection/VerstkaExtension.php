@@ -27,8 +27,6 @@ final class VerstkaExtension extends Extension
                 $config['api_secret'],
                 $config['callback_url'],
                 $config['api_url'],
-                $config['basic_auth_user'],
-                $config['basic_auth_password'],
                 $config['max_content_size'],
                 $config['request_timeout'],
                 $config['download_timeout'],
