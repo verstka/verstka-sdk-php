@@ -6,5 +6,5 @@ namespace Verstka\Sdk;
 
 final class VerstkaSdk
 {
-    public const VERSION = '0.1.1';
+    public const VERSION = '0.1.2';
 }
